@@ -1,12 +1,12 @@
 export function addComma(input) {
   // expect output > num with thousand period comma;
-  const num = Number(input);
-  if (isNaN(num)) return input;
-  const splitNum = num.toString().split('.');
+  if (isNaN(input)) return input;
+  const splitNum = input.toString().split('.');
   const int = splitNum[0];
   const deci = splitNum[1];
   const intWithComma = int.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  const result = `${intWithComma}.${deci}`;
+  const enterDeci = input.endsWith('.');
+  const result = deci ? `${intWithComma}.${deci}` : enterDeci ? `${intWithComma}.` : intWithComma;
   return result;
 };
 

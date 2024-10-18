@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import { addComma, getNumberIntervals } from './FunctionList';
+import PriceInput from './Components/PriceInput';
+import AgeGroupSelect from './Components/AgeGroupSelect';
 
 function App() {
   const [array, setArray] = useState([[], [], [], []]);
@@ -20,10 +22,11 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
+      <section className="App-section">
         <p>AsiaYo PreTest Display page</p>
         {/* <input onChange={addComma}></input> */}
         <input onChange={(e) => addComma(e.target.value)}></input>
+        <PriceInput />
         <hr />
         <div style={{ display: 'flex' }}>
           <input onChange={(e) => addArray(e.target.value, 0, 'start')} />
@@ -41,7 +44,8 @@ function App() {
           <input onChange={(e) => addArray(e.target.value, 3, 'start')} />
           <input onChange={(e) => addArray(e.target.value, 3, 'end')} />
         </div>
-      </header>
+        <AgeGroupSelect overlap />
+      </section>
     </div>
   );
 }
