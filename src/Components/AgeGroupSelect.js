@@ -1,34 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 import { Alert, Form, Input, Select, Space } from "antd";
 
-const AgeGroupSelect = ({ overlap }) => {
-  const [minAge, setMinAge] = useState(0);
-  const [maxAge, setMaxAge] = useState(20);
+const AgeGroupSelect = ({ overlap, onChange, data }) => {
   const ageOptions = [...Array(21).keys()]
-
-  const handleMinAgeChange = (val) => {
-    setMinAge(val);
-  }
-
-  const handleMaxAgeChange = (val) => {
-    setMaxAge(val);
-  }
 
   return (
     <Form layout="vertical">
       <Form.Item label="年齡">
-        <Space.Compact>
-          <Select value={minAge} onChange={handleMinAgeChange} status={overlap && 'error'}>
+        <Space.Compact block>
+          <Select value={data[0]} onChange={(val) => onChange([val, data[1]])} status={overlap && 'error'}>
             {ageOptions.map((age) => (
-              <Select.Option key={age} value={age} disabled={age > maxAge}>
+              <Select.Option key={age} value={age} disabled={age > data[1]}>
                 {age}
               </Select.Option>
             ))}
           </Select>
           <Input value="~" disabled style={{ border: 'none', textAlign: 'center', width: '20%' }} />
-          <Select value={maxAge} onChange={handleMaxAgeChange} status={overlap && 'error'}>
+          <Select value={data[1]} onChange={(val) => onChange([data[0], val])} status={overlap && 'error'}>
             {ageOptions.map((age) => (
-              <Select.Option key={age} value={age} disabled={age < minAge}>
+              <Select.Option key={age} value={age} disabled={age < data[0]}>
                 {age}
               </Select.Option>
             ))}
