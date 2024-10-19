@@ -21,7 +21,7 @@ const PriceInput = () => {
           <Input defaultValue="TWD" style={{ width: "20%" }} />
           <Input
             value={addComma(price)}
-            status="error"
+            status={!price && "error"}
             width={{ width: "80%" }}
             placeholder="請輸入費用"
             onChange={(e) => change(e.target.value)}
